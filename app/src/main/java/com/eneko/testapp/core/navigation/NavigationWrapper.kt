@@ -5,7 +5,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.eneko.testapp.core.navigation.type.createNavType
 import com.eneko.testapp.presentation.breeds_details_screen.BreedsDetailsScreen
