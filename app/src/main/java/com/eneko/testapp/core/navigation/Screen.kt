@@ -32,3 +32,6 @@ object Screen2
 
 @Serializable
 object Screen3
+
+@Serializable
+object TimeScreen
