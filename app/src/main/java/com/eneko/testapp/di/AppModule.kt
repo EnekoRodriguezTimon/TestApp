@@ -1,7 +1,7 @@
 package com.eneko.testapp.di
 
 import com.eneko.testapp.data.remote.BreedApi
-import com.eneko.testapp.presentation.util.Constant.BASE_URL
+import com.eneko.testapp.util.Constant.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,11 +1,9 @@
 package com.eneko.testapp.core.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.eneko.testapp.core.navigation.type.createNavType
 import com.eneko.testapp.presentation.breeds_details_screen.BreedsDetailsScreen
@@ -17,12 +15,13 @@ import com.eneko.testapp.presentation.navigation_screens.Screen2
 import com.eneko.testapp.presentation.navigation_screens.Screen3
 import com.eneko.testapp.presentation.settings_screen.SettingsScreen
 import com.eneko.testapp.presentation.splash_screen.SplashScreen
+import com.eneko.testapp.presentation.time_screen.TimeScreen
 import kotlin.reflect.typeOf
 
 @Composable
-fun NavigationWrapper(navController: NavHostController, modifier: Modifier = Modifier) {
+fun NavigationWrapper(navController: NavHostController) {
 
-    NavHost(navController=navController,startDestination = Splash, modifier = Modifier){
+    NavHost(navController=navController,startDestination = Splash){
         composable<Splash> {
             SplashScreen(
                 onAnimationComplete = {
@@ -75,7 +74,9 @@ fun NavigationWrapper(navController: NavHostController, modifier: Modifier = Mod
             Screen3()
         }
 
-
+        composable<TimeScreen>{
+            TimeScreen()
+        }
 
     }
 }
