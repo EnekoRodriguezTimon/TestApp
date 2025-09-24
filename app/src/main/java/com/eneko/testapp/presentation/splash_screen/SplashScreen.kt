@@ -29,6 +29,8 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(onAnimationComplete: () -> Unit) {
+    //delete
+    onAnimationComplete()
     // Animaciones
     val alpha = remember { Animatable(0f) }
     val scale = remember { Animatable(0.8f) }
