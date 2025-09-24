@@ -25,7 +25,7 @@ fun BreedsDetailsScreen(
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        topBar = { MyTopAppBar(title = "Details", onActionClick = { navigateToSettings(SettingsInfo("eneko", 1, true)) }) }
+        topBar = { MyTopAppBar(title = "Details", onActionClick = { navigateToSettings(SettingsInfo("eneko", 1, true)) }, showBackArrow = true) }
     ) { paddingValues ->
         Column(
             modifier = Modifier

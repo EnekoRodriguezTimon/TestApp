@@ -52,8 +52,8 @@ fun NavigationWrapper(navController: NavHostController, modifier: Modifier = Mod
                 breedName = breedDetails.breedName,
                 navigateToSettings = { settingsInfo -> navController.navigate(Settings(info = settingsInfo))},
                 navigateBack = {
-                    navController.navigate(Home){
-                        popUpTo(Home){
+                    navController.navigate(Main){
+                        popUpTo(Main){
                             inclusive = true
                         }
                     }

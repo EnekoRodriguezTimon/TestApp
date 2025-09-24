@@ -18,20 +18,23 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun MyTopAppBar(
     title: String,
-    onActionClick: () -> Unit = {}
+    onActionClick: () -> Unit = {},
+    showBackArrow: Boolean = false
 ){
     TopAppBar(
         title = { Text(text = title) },
         modifier = Modifier.shadow(elevation = 5.dp),
         actions = {
-            Image(
-                painter = painterResource(id = R.drawable.ic_delete), // This is correct
-                contentDescription = "Title Bar",
-                modifier = Modifier
-                    .width(32.dp)
-                    .padding(end = 8.dp)
-                    .clickable { onActionClick() }
-            )
+            if (showBackArrow) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_delete), // This is correct
+                    contentDescription = "Title Bar",
+                    modifier = Modifier
+                        .width(32.dp)
+                        .padding(end = 8.dp)
+                        .clickable { onActionClick() }
+                )
+            }
         }
     )
 }
