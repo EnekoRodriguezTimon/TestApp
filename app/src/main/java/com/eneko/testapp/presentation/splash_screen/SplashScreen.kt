@@ -70,7 +70,6 @@ fun SplashScreen(onAnimationComplete: () -> Unit) {
         // Animación de salida
         alpha.animateTo(0f, animationSpec = tween(1000))
 
-        // ¡LLAMAR AL CALLBACK! ← Esto es lo que faltaba
         onAnimationComplete()
     }
 
@@ -89,16 +88,6 @@ fun SplashScreen(onAnimationComplete: () -> Unit) {
                 .scale(scale.value * pulseScale) // Combinar dos animaciones de escala
                 .rotate(rotation.value) // Rotación continua
                 .alpha(alpha.value) // Animación de desvanecimiento
-        )
-
-        // Texto con animación independiente
-        Text(
-            text = "Mi App",
-            style = Typography.bodyMedium,
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 50.dp)
-                .alpha(alpha.value)
         )
     }
 }

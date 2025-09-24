@@ -61,9 +61,7 @@ fun SettingsScreen(
                 Text(text = "DarkMode:")
                 Text(text = if (settingsInfo.darkMode) "Modo Oscuro" else "Modo Claro")
             }
-            Button(onClick = {}) {
-                Text(text = "Volver")
-            }
+
         }
     }
 }
