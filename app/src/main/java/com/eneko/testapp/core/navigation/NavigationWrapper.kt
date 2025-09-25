@@ -8,6 +8,7 @@ import androidx.navigation.toRoute
 import com.eneko.testapp.core.navigation.type.createNavType
 import com.eneko.testapp.presentation.breeds_details_screen.BreedsDetailsScreen
 import com.eneko.testapp.presentation.breeds_screen.BreedsScreen
+import com.eneko.testapp.presentation.cart_screen.CartScreen
 import com.eneko.testapp.presentation.home.HomeScreen
 import com.eneko.testapp.presentation.main_screen.MainScreen
 import com.eneko.testapp.presentation.navigation_screens.Screen1
@@ -76,6 +77,10 @@ fun NavigationWrapper(navController: NavHostController) {
 
         composable<TimeScreen>{
             TimeScreen()
+        }
+
+        composable<CartScreen>{
+            CartScreen()
         }
 
     }
