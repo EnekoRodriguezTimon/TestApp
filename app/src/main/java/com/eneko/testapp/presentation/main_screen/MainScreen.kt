@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -23,8 +23,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.eneko.testapp.R
 import com.eneko.testapp.core.navigation.Breeds
+import com.eneko.testapp.presentation.cart_screen.CartScreen
 import com.eneko.testapp.presentation.home.HomeScreen
-import com.eneko.testapp.presentation.navigation_screens.Screen2
 import com.eneko.testapp.presentation.time_screen.TimeScreen
 
 data class BottomNavigationItem(
@@ -59,9 +59,9 @@ fun AppScaffold(navController: NavHostController) {
             badgeCount = 45,
         ),
         BottomNavigationItem(
-            title = "screen2",
-            selectedIcon = Icons.Filled.Settings,
-            unselectedIcon = Icons.Default.Settings,
+            title = stringResource(R.string.cart_title),
+            selectedIcon = Icons.Filled.ShoppingCart,
+            unselectedIcon = Icons.Default.ShoppingCart,
             hasNews = true,
         )
     )
@@ -88,7 +88,7 @@ fun AppScaffold(navController: NavHostController) {
             when(selectedIndex){
                 0 -> HomeScreen { navController.navigate(Breeds) }
                 1 -> TimeScreen()
-                2 -> Screen2()
+                2 -> CartScreen()
             }
         }
     }

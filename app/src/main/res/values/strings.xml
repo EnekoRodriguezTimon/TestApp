@@ -2,4 +2,16 @@
     <string name="app_name">TestApp</string>
     <string name="breeds">Breeds</string>
     <string name="time_title">Time</string>
+    <string name="cart_title">Cart</string>
+
+    <string name="add_item">Add item</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancell</string>
+    <string name="name">Name</string>
+    <string name="quantity">Quantity</string>
+    <string name="delete">Delete</string>
+
+
+    <string name="action_success">Action success</string>
+    <string name="action_error">Action error</string>
 </resources>

@@ -85,4 +85,9 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.52")
 
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
+
+    // Room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
 }
