@@ -35,3 +35,6 @@ object Screen3
 
 @Serializable
 object TimeScreen
+
+@Serializable
+object CartScreen

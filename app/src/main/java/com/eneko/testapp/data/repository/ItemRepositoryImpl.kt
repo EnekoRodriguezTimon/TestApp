@@ -7,13 +7,16 @@ import com.eneko.testapp.domain.model.Item
 import com.eneko.testapp.domain.repository.ItemRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class ItemRepositoryImpl(
+class ItemRepositoryImpl @Inject constructor(
     private val dao: ItemDao
 ) : ItemRepository {
 
-    override suspend fun getItems(): Flow<List<Item>> {
-        return dao.getAll().map { list -> list.map { it.toDomain() } }
+    override fun getItems(): Flow<List<Item>> {
+        return dao.getAll().map { entityList ->
+            entityList.map { it.toDomain() }
+        }
     }
 
     override suspend fun addItem(item: Item) {

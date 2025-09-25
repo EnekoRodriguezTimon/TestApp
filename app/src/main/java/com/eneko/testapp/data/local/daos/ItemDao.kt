@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ItemDao {
     @Query("SELECT * FROM items")
-    suspend fun getAll(): Flow<List<ItemEntity>>
+    fun getAll(): Flow<List<ItemEntity>>
 
     @Insert
     suspend fun insert(item: ItemEntity)
