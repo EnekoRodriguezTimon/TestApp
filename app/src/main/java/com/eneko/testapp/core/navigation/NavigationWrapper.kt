@@ -27,8 +27,8 @@ fun NavigationWrapper(navController: NavHostController) {
             SplashScreen(
                 onAnimationComplete = {
                     navController.navigate(Main) {
-                        popUpTo(Splash) { inclusive = true } // ❌ Elimina Splash del back stack
-                        launchSingleTop = true                      // ✅ Evita crear múltiples instancias
+                        popUpTo(Splash) { inclusive = true }
+                        launchSingleTop = true
                     }
                 }
             )

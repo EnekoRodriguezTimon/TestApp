@@ -14,4 +14,9 @@
 
     <string name="action_success">Action success</string>
     <string name="action_error">Action error</string>
+    <string name="app_security_risk_dialog_title">Security Risk Detected</string>
+    <string name="app_security_risk_sibs_dialog_message">A security risk has been detected (%1$s) and you will be logged out.</string>
+    <string name="app_security_risk_sibs_reinstall_dialog_message">A security risk has been detected (%1$s) and you will be logged out and will need to reinstall the application.</string>
+    <string name="app_security_risk_dialog_message">A security risk has been detected (%1$s) and you will be logged out and will need to reinstall the application.</string>
+
 </resources>
