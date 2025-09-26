@@ -8,6 +8,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.eneko.testapp.presentation.util.ClockMath
 import java.util.Calendar
 import java.util.TimeZone
 import kotlin.math.cos
@@ -66,9 +67,9 @@ fun AnalogClock(modifier: Modifier = Modifier, viewModel: ClockViewModel = hiltV
         val second = calendar.get(Calendar.SECOND)
 
         // Calculate angles
-        val hourAngle = (hour + minute / 60f) * 30f - 90f
-        val minuteAngle = (minute + second / 60f) * 6f - 90f
-        val secondAngle = second * 6f - 90f
+        val hourAngle = ClockMath().calculateHourAngle(hour, minute)
+        val minuteAngle = ClockMath().calculateMinuteAngle(second, minute)
+        val secondAngle = ClockMath().calculateSecondAngle(second)
 
         //calculate hands
         fun drawHand(angle: Float, length: Float, color: Color, strokeWidth: Float) {
