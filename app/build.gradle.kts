@@ -26,12 +26,36 @@ android {
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
+        getByName("debug") {
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
+            isDebuggable = true
+        }
+        getByName("release") {
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
+        }
+    }
+
+    flavorDimensions += "environment"
+
+    productFlavors {
+        create("dev") {
+            dimension = "environment"
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+        }
+        create("qa") {
+            dimension = "environment"
+            applicationIdSuffix = ".qa"
+            versionNameSuffix = "-qa"
+        }
+        create("prod") {
+            dimension = "environment"
         }
     }
     compileOptions {
@@ -43,6 +67,10 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
+    }
+    defaultConfig {
+        buildConfigField("String", "LIBRARY_NAME", "\"core\"")
     }
 }
 
@@ -65,6 +93,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    testImplementation(libs.mockk)
     //navegacion
     implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.serialization)

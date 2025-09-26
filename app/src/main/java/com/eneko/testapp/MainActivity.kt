@@ -12,6 +12,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.compose.rememberNavController
 import com.eneko.testapp.core.navigation.NavigationWrapper
 import com.eneko.testapp.ui.theme.TestAppTheme
+import com.eneko.testapp.util.BuildTypeChecker
+import com.eneko.testapp.util.DeviceChecker
 import com.eneko.testapp.util.Event
 import com.eneko.testapp.util.EventBus
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,6 +22,15 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val isRooted = !BuildTypeChecker.isDebug() && DeviceChecker.isDeviceRooted()
+        val isEmulator = !BuildTypeChecker.isDebug() && DeviceChecker.isDeviceEmulator()
+        if (isRooted || isEmulator) {
+            val securityReason = if (isRooted) "Rooted Device" else "Emulator Device"
+
+            Toast.makeText(this, "Security risk detected: $securityReason", Toast.LENGTH_LONG).show()
+            finishAffinity()
+            return
+        }
         enableEdgeToEdge()
         setContent {
             TestAppTheme {
