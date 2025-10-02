@@ -111,7 +111,7 @@ fun ItemTable(viewModel: CartViewModel, showAddDialog: () -> Unit) {
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(item.name, modifier = Modifier.weight(1f))
+                    Text(item.name, modifier = Modifier.weight(1f).padding(end = 10.dp))
                     Text(text = item.quantity.toString(), modifier = Modifier.weight(1f))
 
                     IconButton(onClick = { viewModel.deleteItem(item) }) {
