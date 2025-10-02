@@ -1,17 +1,20 @@
 package com.eneko.testapp.presentation.util.components
 
-import android.R
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -19,15 +22,22 @@ import androidx.compose.ui.unit.dp
 fun MyTopAppBar(
     title: String,
     onActionClick: () -> Unit = {},
-    showBackArrow: Boolean = false
-){
+    showBackArrow: Boolean = false,
+) {
     TopAppBar(
-        title = { Text(text = title) },
+        title = {
+            Box(
+                modifier = Modifier.fillMaxHeight(),
+                contentAlignment = Alignment.CenterStart
+            ) {
+                Text(text = title)
+            }
+        },
         modifier = Modifier.shadow(elevation = 5.dp),
         actions = {
             if (showBackArrow) {
                 Image(
-                    painter = painterResource(id = R.drawable.ic_delete), // This is correct
+                    imageVector = Icons.Default.Settings,
                     contentDescription = "Title Bar",
                     modifier = Modifier
                         .width(32.dp)

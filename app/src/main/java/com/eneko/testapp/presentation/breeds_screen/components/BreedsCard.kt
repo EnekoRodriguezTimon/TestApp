@@ -12,27 +12,32 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.eneko.testapp.domain.model.Breed
+import com.eneko.testapp.ui.theme.EmeraldDarkSecondaryPastel
+import com.eneko.testapp.ui.theme.TextPrimary
 
 @Composable
 fun BreedsCard(
     modifier: Modifier,
     onClick: () -> Unit,
-    breed: Breed
-){
-    Card (
+    breed: Breed,
+) {
+    Card(
         modifier = Modifier,
-        shape = RoundedCornerShape(10.dp),
+        shape = RoundedCornerShape(5.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-        colors = CardDefaults.cardColors(contentColor = Color.White)
-        ) {
-        Column (modifier = Modifier
-            .padding(15.dp)
-            .clickable{
-                onClick()
-            }){
+        colors = CardDefaults.cardColors(
+            contentColor = TextPrimary,
+            containerColor = EmeraldDarkSecondaryPastel
+        )
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(15.dp)
+                .clickable {
+                    onClick()
+                }) {
 
             Spacer(modifier = Modifier.height(5.dp))
             Text(text = breed.attributes.name, style = MaterialTheme.typography.titleMedium)
