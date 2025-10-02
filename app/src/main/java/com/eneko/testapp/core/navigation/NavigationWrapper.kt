@@ -46,6 +46,7 @@ fun NavigationWrapper(navController: NavHostController) {
             BreedsScreen{breed -> navController.navigate(BreedsDetails(breedName = breed))}
         }
 
+        //not recomended to pass objects, just for example
         composable<BreedsDetails>{ backStackEntry ->
             val breedDetails: BreedsDetails = backStackEntry.toRoute()
             BreedsDetailsScreen(

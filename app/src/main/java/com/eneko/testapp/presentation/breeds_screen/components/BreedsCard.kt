@@ -24,7 +24,9 @@ fun BreedsCard(
     breed: Breed,
 ) {
     Card(
-        modifier = Modifier,
+        modifier = modifier.clickable {
+            onClick()
+        },
         shape = RoundedCornerShape(5.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         colors = CardDefaults.cardColors(
@@ -35,11 +37,7 @@ fun BreedsCard(
         Column(
             modifier = Modifier
                 .padding(15.dp)
-                .clickable {
-                    onClick()
-                }) {
-
-            Spacer(modifier = Modifier.height(5.dp))
+                ) {
             Text(text = breed.attributes.name, style = MaterialTheme.typography.titleMedium)
         }
     }
