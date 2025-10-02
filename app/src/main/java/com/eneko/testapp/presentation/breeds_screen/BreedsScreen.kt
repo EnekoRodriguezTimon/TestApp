@@ -24,25 +24,30 @@ import com.eneko.testapp.presentation.util.components.MyTopAppBar
 internal fun BreedsScreen(
     viewModel: BreedsViewModel = hiltViewModel(),
     navigateToBreedDetail: (String) -> Unit,
+    navigateBack: () -> Unit,
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    ProductsContent(state = state, navigateToBreedDetail)
+    ProductsContent(state = state, navigateToBreedDetail, navigateBack)
 }
 
 @Composable
 fun ProductsContent(
     state: BreedsViewState,
     navigateToBreedDetail: (String) -> Unit,
+    navigateBack: () -> Unit,
 ) {
     LoadingDialog(isLoading = state.isLoading)
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
-            MyTopAppBar(stringResource(R.string.breeds))
+            MyTopAppBar(
+                stringResource(R.string.breeds),
+                showIcon = true,
+                onActionClick = { navigateBack() })
         }
 
     ) {
-        Column(modifier = Modifier.padding(top = it.calculateTopPadding()), ) {
+        Column(modifier = Modifier.padding(top = it.calculateTopPadding())) {
             LazyVerticalStaggeredGrid(
                 modifier = Modifier.padding(top = 15.dp),
                 columns = StaggeredGridCells.Fixed(2),

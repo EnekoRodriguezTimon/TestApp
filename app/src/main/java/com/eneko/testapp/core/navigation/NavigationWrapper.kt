@@ -22,7 +22,7 @@ import kotlin.reflect.typeOf
 @Composable
 fun NavigationWrapper(navController: NavHostController) {
 
-    NavHost(navController=navController,startDestination = Splash){
+    NavHost(navController = navController, startDestination = Splash) {
         composable<Splash> {
             SplashScreen(
                 onAnimationComplete = {
@@ -35,26 +35,34 @@ fun NavigationWrapper(navController: NavHostController) {
         }
 
         composable<Main> {
-            MainScreen (navController = navController)
+            MainScreen(navController = navController)
         }
 
-        composable<Home>{
-            HomeScreen{navController.navigate(Breeds)}
+        composable<Home> {
+            HomeScreen { navController.navigate(Breeds) }
         }
 
-        composable<Breeds>{
-            BreedsScreen{breed -> navController.navigate(BreedsDetails(breedName = breed))}
+        composable<Breeds> {
+            BreedsScreen(navigateToBreedDetail = { breed ->
+                navController.navigate(
+                    BreedsDetails(
+                        breedName = breed
+                    )
+                )
+            }, navigateBack = {
+                navController.popBackStack()
+            })
         }
 
         //not recomended to pass objects, just for example
-        composable<BreedsDetails>{ backStackEntry ->
+        composable<BreedsDetails> { backStackEntry ->
             val breedDetails: BreedsDetails = backStackEntry.toRoute()
             BreedsDetailsScreen(
                 breedName = breedDetails.breedName,
-                navigateToSettings = { settingsInfo -> navController.navigate(Settings(info = settingsInfo))},
+                navigateToSettings = { settingsInfo -> navController.navigate(Settings(info = settingsInfo)) },
                 navigateBack = {
-                    navController.navigate(Main){
-                        popUpTo(Main){
+                    navController.navigate(Main) {
+                        popUpTo(Main) {
                             inclusive = true
                         }
                     }
@@ -62,25 +70,25 @@ fun NavigationWrapper(navController: NavHostController) {
             )
         }
 
-        composable<Settings>(typeMap = mapOf(typeOf<SettingsInfo>() to createNavType<SettingsInfo>())){ backStackEntry ->
+        composable<Settings>(typeMap = mapOf(typeOf<SettingsInfo>() to createNavType<SettingsInfo>())) { backStackEntry ->
             val settings: Settings = backStackEntry.toRoute()
             SettingsScreen(settingsInfo = settings.info)
         }
-        composable<Screen1>{
+        composable<Screen1> {
             Screen1()
         }
-        composable<Screen2>{
+        composable<Screen2> {
             Screen2()
         }
-        composable<Screen3>{
+        composable<Screen3> {
             Screen3()
         }
 
-        composable<TimeScreen>{
+        composable<TimeScreen> {
             TimeScreen()
         }
 
-        composable<CartScreen>{
+        composable<CartScreen> {
             CartScreen()
         }
 
