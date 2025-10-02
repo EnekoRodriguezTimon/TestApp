@@ -10,6 +10,7 @@ import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,12 +21,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.eneko.testapp.R
 import com.eneko.testapp.core.navigation.Breeds
 import com.eneko.testapp.presentation.cart_screen.CartScreen
 import com.eneko.testapp.presentation.home.HomeScreen
 import com.eneko.testapp.presentation.time_screen.TimeScreen
+import com.eneko.testapp.presentation.util.components.MyTopAppBar
+import com.eneko.testapp.ui.theme.EmeraldDarkPrimary
+import com.eneko.testapp.ui.theme.EmeraldDarkPrimaryVariant
+import com.eneko.testapp.ui.theme.EmeraldDarkSecondaryVariant
+import com.eneko.testapp.ui.theme.TextPrimary
 
 data class BottomNavigationItem(
     val title: String,
@@ -46,7 +54,7 @@ fun AppScaffold(navController: NavHostController) {
     val itemsList = listOf(
 
         BottomNavigationItem(
-            title = stringResource(R.string.breeds),
+            title = stringResource(R.string.home_title),
             selectedIcon = Icons.Filled.Home,
             unselectedIcon = Icons.Default.Home,
             hasNews = false,
@@ -69,8 +77,15 @@ fun AppScaffold(navController: NavHostController) {
     var selectedIndex by rememberSaveable { mutableIntStateOf(0) }
 
     Scaffold(
+        topBar = {
+            MyTopAppBar(
+                title = itemsList[selectedIndex].title
+            )
+        },
         bottomBar = {
-            NavigationBar {
+            NavigationBar(
+                containerColor = EmeraldDarkPrimary
+            ) {
                 itemsList.forEachIndexed { index, item ->
                     NavigationBarItem(
                         selected = index == selectedIndex,
@@ -78,20 +93,34 @@ fun AppScaffold(navController: NavHostController) {
                             selectedIndex = index
                         },
                         icon = { Icon(item.selectedIcon, contentDescription = "") },
-                        label = { Text(item.title) }
+                        label = { Text(item.title) },
+                        colors = NavigationBarItemDefaults.colors(
+                            selectedIconColor = EmeraldDarkPrimaryVariant,
+                            unselectedIconColor = TextPrimary,
+                            selectedTextColor = EmeraldDarkSecondaryVariant,
+                            unselectedTextColor = TextPrimary,
+                            indicatorColor = EmeraldDarkSecondaryVariant
+                        )
                     )
                 }
             }
         }
     ) { padding ->
         Box(modifier = Modifier.padding(padding)) {
-            when(selectedIndex){
+            when (selectedIndex) {
                 0 -> HomeScreen { navController.navigate(Breeds) }
                 1 -> TimeScreen()
                 2 -> CartScreen()
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun MainScreenPreview() {
+    val navController = rememberNavController()
+    MainScreen(navController = navController)
 }
 
 
