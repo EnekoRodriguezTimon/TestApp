@@ -30,12 +30,12 @@ import kotlinx.coroutines.delay
 @Composable
 fun SplashScreen(onAnimationComplete: () -> Unit) {
 
-    // Animaciones
+    // animation values
     val alpha = remember { Animatable(0f) }
     val scale = remember { Animatable(0.8f) }
     val rotation = remember { Animatable(0f) }
 
-    // Animación infinita para el logo
+    // infinite animation for the logo
     val infiniteTransition = rememberInfiniteTransition(label = "infinite")
     val pulseScale by infiniteTransition.animateFloat(
         initialValue = 1f,
@@ -46,22 +46,22 @@ fun SplashScreen(onAnimationComplete: () -> Unit) {
         ), label = "pulse"
     )
 
-    // Iniciar animaciones al cargar el composable
+    //Start animation
     LaunchedEffect(Unit) {
-        // Animación de entrada
+        // in animation
         alpha.animateTo(1f, animationSpec = tween(1000))
         scale.animateTo(1f, animationSpec = tween(1000))
 
-        // Animación de rotación continua
+        // rotate animation
         rotation.animateTo(
             targetValue = 360f,
-            animationSpec = tween(2000, easing = LinearEasing)
+            animationSpec = tween(700)
         )
 
-        // Esperar 3 segundos y completar
-        delay(3000)
+        // wait 2 soconds and complete
+        delay(2000)
 
-        // Animación de salida
+        // exit animation
         alpha.animateTo(0f, animationSpec = tween(1000))
 
         onAnimationComplete()
@@ -73,15 +73,15 @@ fun SplashScreen(onAnimationComplete: () -> Unit) {
             .background(Background), // Color de fondo
         contentAlignment = Alignment.Center
     ) {
-        // Logo con múltiples animaciones
+
         Image(
             painter = painterResource(id = R.drawable.ic_launcher_foreground),
             contentDescription = "App Logo",
             modifier = Modifier
                 .size(120.dp)
-                .scale(scale.value * pulseScale) // Combinar dos animaciones de escala
-                .rotate(rotation.value) // Rotación continua
-                .alpha(alpha.value) // Animación de desvanecimiento
+                .scale(scale.value * pulseScale)
+                .rotate(rotation.value)
+                .alpha(alpha.value)
         )
     }
 }

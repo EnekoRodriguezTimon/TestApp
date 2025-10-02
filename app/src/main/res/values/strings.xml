@@ -3,13 +3,18 @@
     <string name="breeds">Breeds</string>
     <string name="time_title">Time</string>
     <string name="cart_title">Cart</string>
+    <string name="home_title">Home</string>
 
+    <string name="see_breeds">See breeds</string>
     <string name="add_item">Add item</string>
     <string name="add">Add</string>
-    <string name="cancel">Cancell</string>
+    <string name="cancel">Cancel</string>
     <string name="name">Name</string>
     <string name="quantity">Quantity</string>
     <string name="delete">Delete</string>
+    <string name="home_description">Here you can start a navigation to retrieve a list of breeds from an API, get their details and navigate to settings</string>
+    <string name="navigate_to_home">Go Home</string>
+    <string name="selected_breed">Selected breed</string>
 
 
     <string name="action_success">Action success</string>

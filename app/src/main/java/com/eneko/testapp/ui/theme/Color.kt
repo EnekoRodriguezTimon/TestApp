@@ -14,6 +14,8 @@ val EmeraldDarkPrimary = Color(0xFF046A38)
 val EmeraldDarkPrimaryVariant = Color(0xFF03522C)
 val EmeraldDarkSecondary = Color(0xFFFFD700)
 val EmeraldDarkSecondaryVariant = Color(0xFFFFC700)
+
+val EmeraldDarkSecondaryPastel = Color(0x80FFF3B0)
 val EmeraldDarkTertiary = Color(0xFF4DD0E1)
 
 val TextPrimary = Color(0xFFE0F2F1)
