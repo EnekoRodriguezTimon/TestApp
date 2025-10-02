@@ -7,12 +7,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.eneko.testapp.R
 import com.eneko.testapp.core.navigation.SettingsInfo
 import com.eneko.testapp.presentation.util.components.MyTopAppBar
 
@@ -21,39 +26,36 @@ import com.eneko.testapp.presentation.util.components.MyTopAppBar
 fun BreedsDetailsScreen(
     breedName: String,
     navigateToSettings: (infoSettings: SettingsInfo) -> Unit,
-    navigateBack: () -> Unit
+    navigateBack: () -> Unit,
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        topBar = { MyTopAppBar(title = "Details", onActionClick = { navigateToSettings(SettingsInfo("user", 1, true)) }, showBackArrow = true) }
+        topBar = {
+            MyTopAppBar(
+                title = "Details",
+                onActionClick = { navigateToSettings(SettingsInfo("user", 1, true)) },
+                showIcon = true,
+                icon = Icons.Default.Settings
+            )
+        }
     ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .padding(16.dp)
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Column(modifier = Modifier
-                .fillMaxWidth()
-                .border(
-                width = 1.dp,
-                color = Color.DarkGray,
-                shape = RoundedCornerShape(8.dp)
-            )){
-                Text(text = "Breeds:")
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                Text(text = stringResource(R.string.selected_breed))
                 Text(text = breedName)
             }
-            Column(modifier = Modifier
-                .fillMaxWidth()
-                .border(
-                width = 1.dp,
-                color = Color.DarkGray,
-                shape = RoundedCornerShape(8.dp)
-            )){
-                Text(text = "Descripcion:")
-            }
-            Button(onClick = navigateBack) {
-                Text(text = "Volver")
+
+            Button(onClick = navigateBack, modifier = Modifier.padding(top = 16.dp)) {
+                Text(text = stringResource(R.string.navigate_to_home))
             }
         }
     }
